@@ -3,6 +3,11 @@ using System.Collections;
 
 public class Pig : MonoBehaviour
 {
+
+    public float Health = 150f;
+    public Sprite SpriteShownWhenHurt;
+    private float ChangeSpriteHealth;
+
     void Start()
     {
         ChangeSpriteHealth = Health - 30f;
@@ -28,8 +33,5 @@ public class Pig : MonoBehaviour
             if (Health <= 0) Destroy(this.gameObject);
         }
     }
-    
-    public float Health = 150f;
-    public Sprite SpriteShownWhenHurt;
-    private float ChangeSpriteHealth;
+
 }

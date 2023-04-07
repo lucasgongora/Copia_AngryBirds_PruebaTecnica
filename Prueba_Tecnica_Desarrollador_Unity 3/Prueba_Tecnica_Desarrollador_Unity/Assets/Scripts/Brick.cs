@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Brick : MonoBehaviour
 {
+    public float Health = 70f;
+
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.GetComponent<Rigidbody2D>() == null) return;
@@ -13,6 +15,4 @@ public class Brick : MonoBehaviour
         Health -= damage;
         if (Health <= 0) Destroy(this.gameObject);
     }
-
-    public float Health = 70f;
 }

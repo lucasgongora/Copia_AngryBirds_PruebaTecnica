@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ParallaxScrolling : MonoBehaviour {
+public class ParallaxScrolling : MonoBehaviour 
+{
+    Camera camera;
+    public float ParallaxFactor;
+    Vector3 previous_CameraTransform;
 
-	void Start () {
+    void Start () {
         camera = Camera.main;
         previous_CameraTransform = camera.transform.position;
 	}
-
-    Camera camera;
 	
 	void Update () {
         Vector3 delta = camera.transform.position - previous_CameraTransform;
@@ -17,7 +19,5 @@ public class ParallaxScrolling : MonoBehaviour {
         previous_CameraTransform = camera.transform.position;
 	}
 
-    public float ParallaxFactor;
 
-    Vector3 previous_CameraTransform;
 }

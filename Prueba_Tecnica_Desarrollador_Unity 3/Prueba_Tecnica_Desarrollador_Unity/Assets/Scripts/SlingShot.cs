@@ -4,6 +4,22 @@ using System;
 
 public class SlingShot : MonoBehaviour
 {
+    private Vector3 SlingshotMiddleVector;
+    [HideInInspector]
+    public SlingshotState slingshotState;
+    public Transform LeftSlingshotOrigin, RightSlingshotOrigin;
+    public LineRenderer SlingshotLineRenderer1;
+    public LineRenderer SlingshotLineRenderer2;
+    public LineRenderer TrajectoryLineRenderer;
+    [HideInInspector]
+    public GameObject BirdToThrow;
+    public Transform BirdWaitPosition;
+    public float ThrowSpeed;
+    [HideInInspector]
+    public float TimeSinceThrown;
+    public event EventHandler BirdThrown;
+
+
     void Start()
     {
         SlingshotLineRenderer1.sortingLayerName = "Foreground";
@@ -95,7 +111,6 @@ public class SlingShot : MonoBehaviour
             BirdThrown(this, EventArgs.Empty);
     }
 
-    public event EventHandler BirdThrown;
 
     private void InitializeBird()
     {
@@ -144,25 +159,5 @@ public class SlingShot : MonoBehaviour
             TrajectoryLineRenderer.SetPosition(i, segments[i]);
     }
     
-    private Vector3 SlingshotMiddleVector;
-
-    [HideInInspector]
-    public SlingshotState slingshotState;
-
-    public Transform LeftSlingshotOrigin, RightSlingshotOrigin;
-
-    public LineRenderer SlingshotLineRenderer1;
-    public LineRenderer SlingshotLineRenderer2;
     
-    public LineRenderer TrajectoryLineRenderer;
-    
-    [HideInInspector]
-    public GameObject BirdToThrow;
-
-    public Transform BirdWaitPosition;
-
-    public float ThrowSpeed;
-
-    [HideInInspector]
-    public float TimeSinceThrown;
 }

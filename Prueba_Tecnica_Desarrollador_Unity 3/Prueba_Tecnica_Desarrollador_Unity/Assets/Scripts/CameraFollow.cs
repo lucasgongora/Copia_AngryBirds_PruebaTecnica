@@ -3,6 +3,19 @@ using System.Collections;
 
 public class CameraFollow : MonoBehaviour
 {
+    [HideInInspector]
+    public Vector3 StartingPosition;
+    private const float minCameraX = 0;
+    private const float maxCameraX = 13;
+    [HideInInspector]
+    public bool IsFollowing;
+    [HideInInspector]
+    public Transform BirdToFollow;
+
+    void Start()
+    {
+        StartingPosition = transform.position;
+    }
     void Update()
     {
         if (IsFollowing)
@@ -15,19 +28,4 @@ public class CameraFollow : MonoBehaviour
             else
                 IsFollowing = false;
     }
-    
-    void Start()
-    {
-        StartingPosition = transform.position;
-    }
-
-    [HideInInspector]
-    public Vector3 StartingPosition;
-
-    private const float minCameraX = 0;
-    private const float maxCameraX = 13;
-    [HideInInspector]
-    public bool IsFollowing;
-    [HideInInspector]
-    public Transform BirdToFollow;
 }

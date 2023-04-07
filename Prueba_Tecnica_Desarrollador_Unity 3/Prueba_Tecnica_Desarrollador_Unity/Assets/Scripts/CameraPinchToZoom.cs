@@ -3,6 +3,8 @@ using System.Collections;
 
 public class CameraPinchToZoom : MonoBehaviour
 {
+    public float perspectiveZoomSpeed = 0.5f; public float orthoZoomSpeed = 0.5f;
+
     void Update()
     {
         if (Input.touchCount == 2)
@@ -31,5 +33,5 @@ public class CameraPinchToZoom : MonoBehaviour
         }
     }
     
-    public float perspectiveZoomSpeed = 0.5f; public float orthoZoomSpeed = 0.5f;
+
 }
