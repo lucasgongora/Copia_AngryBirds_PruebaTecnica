@@ -2,21 +2,25 @@
 using System.Collections.Generic;
 using Assets.Scripts;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
 
     public CameraFollow cameraFollow;
-    int currentBirdIndex;
+    public int currentBirdIndex;
     public SlingShot slingshot;
     [HideInInspector]
     public static GameState CurrentGameState = GameState.Start;
     private List<GameObject> Bricks;
-    private List<GameObject> Birds;
+    [SerializeField] private List<GameObject> Birds;
     private List<GameObject> Pigs;
 
     void Start()
     {
+        Instantiate(Birds[PlayerPrefs.GetInt("selectedCharacter1")], Birds[PlayerPrefs.GetInt("selectedCharacter1")].transform.position, Quaternion.identity).SetActive(true);
+        Instantiate(Birds[PlayerPrefs.GetInt("selectedCharacter2")], Birds[PlayerPrefs.GetInt("selectedCharacter2")].transform.position, Quaternion.identity).SetActive(true);
+        Instantiate(Birds[PlayerPrefs.GetInt("selectedCharacter3")], Birds[PlayerPrefs.GetInt("selectedCharacter3")].transform.position, Quaternion.identity).SetActive(true);
         CurrentGameState = GameState.Start;
         slingshot.enabled = false;
         Bricks = new List<GameObject>(GameObject.FindGameObjectsWithTag("Brick"));
@@ -47,7 +51,8 @@ public class GameManager : MonoBehaviour
             case GameState.Won:
             case GameState.Lost:
                 if (Input.GetMouseButtonUp(0))
-                    Application.LoadLevel(Application.loadedLevel);
+                    //Application.LoadLevel(Application.loadedLevel);   OBSOLETO
+                    SceneManager.LoadScene("Game");
                 break;
             default:
                 break;
@@ -64,9 +69,7 @@ public class GameManager : MonoBehaviour
         float duration = Vector2.Distance(Camera.main.transform.position, cameraFollow.StartingPosition) / 10f;
         if (duration == 0.0f) duration = 0.1f;
         //animate the camera to start
-        Camera.main.transform.positionTo
-            (duration,
-            cameraFollow.StartingPosition). //end position
+        Camera.main.transform.positionTo(duration,cameraFollow.StartingPosition). //end position
             setOnCompleteHandler((x) =>
             {
                 cameraFollow.IsFollowing = false;
@@ -134,10 +137,10 @@ public class GameManager : MonoBehaviour
                 GUI.Label(new Rect(0, 150, 200, 100), "Tap the screen to start");
                 break;
             case GameState.Won:
-                GUI.Label(new Rect(0, 150, 200, 100), "Has ganado! Tap the screen to restart");
+                GUI.Label(new Rect(0, 150, 200, 100), "You Win! Tap the screen to restart");
                 break;
             case GameState.Lost:
-                GUI.Label(new Rect(0, 150, 200, 100), "Has perdido! Tap the screen to restart");
+                GUI.Label(new Rect(0, 150, 200, 100), "You Lost! Tap the screen to restart");
                 break;
             default:
                 break;

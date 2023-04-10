@@ -67,7 +67,7 @@ public class SlingShot : MonoBehaviour
                         BirdToThrow.transform.position = location;
                     }
                     float distance = Vector3.Distance(SlingshotMiddleVector, BirdToThrow.transform.position);
-                    MostrarTrayectoria(distance);
+                    ShowTrajectory(distance);
                 }
                 else 
                 {
@@ -135,7 +135,7 @@ public class SlingShot : MonoBehaviour
     {
         TrajectoryLineRenderer.enabled = active;
     }
-    void MostrarTrayectoria(float distance)
+    void ShowTrajectory(float distance)
     {
         Set_TrajectoryLineRenderesActive(true);
         Vector3 v2 = SlingshotMiddleVector - BirdToThrow.transform.position;
@@ -154,7 +154,7 @@ public class SlingShot : MonoBehaviour
             segments[i] = segments[0] + segVelocity * time2 + 0.5f * Physics2D.gravity * Mathf.Pow(time2, 2);
         }
 
-        TrajectoryLineRenderer.SetVertexCount(segmentCount);
+        TrajectoryLineRenderer.positionCount = segmentCount;  //se reemplazo "TrajectoryLineRenderer.SetVertexCount()" porque está obsoleto.
         for (int i = 0; i < segmentCount; i++)
             TrajectoryLineRenderer.SetPosition(i, segments[i]);
     }

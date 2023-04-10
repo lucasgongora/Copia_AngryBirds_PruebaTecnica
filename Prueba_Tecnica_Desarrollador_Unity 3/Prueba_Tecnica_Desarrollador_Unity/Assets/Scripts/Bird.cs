@@ -24,6 +24,10 @@ public class Bird : MonoBehaviour
 
     public void AlDispararPajaro()
     {
-        GetComponent<AudioSource>().Play(); GetComponent<TrailRenderer>().enabled = true; GetComponent<Rigidbody2D>().isKinematic = false; GetComponent<CircleCollider2D>().radius = Constants.BirdColliderRadiusNormal; State = BirdState.Thrown;
+        GetComponent<AudioSource>().Play();
+        GetComponent<TrailRenderer>().enabled = true; 
+        GetComponent<Rigidbody2D>().isKinematic = false; 
+        GetComponent<CircleCollider2D>().radius = Constants.BirdColliderRadiusNormal; 
+        State = BirdState.Thrown;
     }  
 }
